@@ -1,0 +1,21 @@
+package com.ssandeep79.springseleniumdemo;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.springframework.beans.factory.Lazy;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.PostConstruct;
+
+public abstract class Base {
+    @Autowired
+    @Lazy
+    private WebDriver driver;
+
+    @PostConstruct
+    private void init() {
+        PageFactory.initElements(driver, this);
+    }
+
+    public abstract isAt();
+}
