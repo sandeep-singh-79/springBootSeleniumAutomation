@@ -6,12 +6,15 @@ import java.nio.file.Path;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
-@Component public class ScreenshotUtil {
+@Lazy
+@Component
+public class ScreenshotUtil {
     @Value("${screenshot.path}")
     private Path path;
 

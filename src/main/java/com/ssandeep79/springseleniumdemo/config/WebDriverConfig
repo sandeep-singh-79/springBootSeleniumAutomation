@@ -4,18 +4,21 @@ import org.openqa.selenium.WebDriver;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 @Lazy
 @Configuration
 public class WebDriverConfig {
 
     @Bean
+    @ConditionOnProperty(name = "browser", havingValue = "chrome")
     public WebDriver chromeDriver() {
         WebDriverManager.chromeDriver.setup();
         return new ChromeDriver();
     }
 
     @Bean
+    @ConditionOnProperty(name = "browser", havingValue = "firefox")
     public WebDriver firefoxDriver() {
         WebDriverManager.firefoxDriver.setup();
         return new FirefoxDriver();

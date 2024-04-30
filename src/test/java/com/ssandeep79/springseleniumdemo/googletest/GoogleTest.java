@@ -2,6 +2,7 @@ package com.ssandeep79.springseleniumdemo.googletest;
 
 import java.time.LocalDateTime;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -14,6 +15,7 @@ public class GoogleTest extends SpringBaseTestNGTest {
 
     @Autowired
     private GooglePage googlePage;
+    @Lazy
     @Autowired
     private ScreenshotUtil screenshotUtil;
 
