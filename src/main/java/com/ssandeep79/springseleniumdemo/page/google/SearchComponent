@@ -2,6 +2,7 @@ package com.ssandeep79.springseleniumdemo.page.google;
 
 import org.springframework.stereotype.Component;
 import org.openqa.selenium.support.FindBy;
+import com.ssandeep79.springseleniumdemo.page.Base;
 
 import java.util.List;
 
