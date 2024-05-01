@@ -1,26 +1,33 @@
 package com.ssandeep79.springseleniumdemo.config;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 
 @Lazy
+@Profile("!remote")
 @Configuration
 public class WebDriverConfig {
 
     @Bean
-    @ConditionOnProperty(name = "browser", havingValue = "chrome")
-    public WebDriver chromeDriver() {
-        WebDriverManager.chromeDriver.setup();
-        return new ChromeDriver();
-    }
-
-    @Bean
-    @ConditionOnProperty(name = "browser", havingValue = "firefox")
+    @ConditionalOnProperty(name = "browser", havingValue = "firefox")
     public WebDriver firefoxDriver() {
         WebDriverManager.firefoxDriver.setup();
         return new FirefoxDriver();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public WebDriver chromeDriver() {
+        WebDriverManager.chromeDriver.setup();
+        return new ChromeDriver();
     }
 }
