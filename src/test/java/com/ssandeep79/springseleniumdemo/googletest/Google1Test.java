@@ -15,6 +15,7 @@ import com.ssandeep79.springseleniumdemo.util.ScreenshotUtil;
 
 public class Google1Test extends SpringBaseTestNGTest {
 
+    @Lazy
     @Autowired
     private GooglePage googlePage;
     @Lazy

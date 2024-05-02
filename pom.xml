@@ -110,7 +110,7 @@
 
 	<build>
 		<plugins>
-            <plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven.surefire.plugin}</version>
@@ -121,6 +121,9 @@
 							<value>2</value>
 						</property>
 					</properties>
+					<suiteXmlFiles>
+						<suiteXmlFile>testng-suite.xml</suiteXmlFile>
+					</suiteXmlFiles>
 					<!-- <includes>
 						<include>com.ssandeep79.springseleniumdemo.CucumberRunner</include>
 					</includes> -->
@@ -129,14 +132,14 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!-- <configuration>
-					<excludes>
+				<configuration>
+					<!-- <excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
-					</excludes>
-				</configuration> -->
+					</excludes> -->
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

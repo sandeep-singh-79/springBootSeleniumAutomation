@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Profile;
 
 @Lazy
-@Profile("remote")
+@Profile({"remote"})
 @Configuration
 public class RemoteWebDriverConfig {
     @Value("${selenium.grid.url}")
