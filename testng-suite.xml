@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="spring-boot" parallel="tests" thread-count="2">
+<suite name="spring-boot" parallel="none" thread-count="2">
     <test name="test-1">
         <classes>
             <class name="com.ssandeep79.springseleniumdemo.googletest.Google1Test" />
@@ -10,7 +10,7 @@
             <class name="com.ssandeep79.springseleniumdemo.googletest.Google2Test" />
         </classes>
     </test>
-    <!-- <test name="test-3">
+    <test name="test-3">
         <classes>
             <class name="com.ssandeep79.springseleniumdemo.googletest.Google1Test" />
         </classes>
@@ -19,5 +19,5 @@
         <classes>
             <class name="com.ssandeep79.springseleniumdemo.googletest.Google2Test" />
         </classes>
-    </test> -->
+    </test>
 </suite>

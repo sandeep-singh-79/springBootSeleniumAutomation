@@ -106,7 +106,13 @@
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+	
+   <dependency>
+     <groupId>org.springframework.cloud</groupId>
+     <artifactId>spring-cloud-context</artifactId>
+     <version>2.1.2.RELEASE</version>
+   </dependency>
+ </dependencies>
 
 	<build>
 		<plugins>
@@ -115,12 +121,12 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven.surefire.plugin}</version>
 				<configuration>
-					<properties>
+					<!-- <properties>
 						<property>
 							<name>dataproviderthreadcount</name>
 							<value>2</value>
 						</property>
-					</properties>
+					</properties> -->
 					<suiteXmlFiles>
 						<suiteXmlFile>./testng-suite.xml</suiteXmlFile>
 					</suiteXmlFiles>
