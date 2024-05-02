@@ -20,7 +20,7 @@
 		<testng.version>7.10.1</testng.version>
         <cucumber.version>7.17.0</cucumber.version>
         <faker.verison>1.0.2</faker.verison>
-		<maven.surefire.plugin>3.0.0-M1</maven.surefire.plugin>
+		<maven.surefire.plugin>3.2.5</maven.surefire.plugin>
 	</properties>
 	<dependencies>
     <dependency>
@@ -39,6 +39,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency> -->
     <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
@@ -66,11 +71,6 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
         <dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -122,7 +122,7 @@
 						</property>
 					</properties>
 					<suiteXmlFiles>
-						<suiteXmlFile>testng-suite.xml</suiteXmlFile>
+						<suiteXmlFile>./testng-suite.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<!-- <includes>
 						<include>com.ssandeep79.springseleniumdemo.CucumberRunner</include>
@@ -133,12 +133,12 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<!-- <excludes>
+					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
-					</excludes> -->
+					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>

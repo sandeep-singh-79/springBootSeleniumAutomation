@@ -4,22 +4,19 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.ssandeep79.springseleniumdemo.SpringBaseTestNGTest;
+import com.ssandeep79.springseleniumdemo.annotation.LazyAutowired;
 import com.ssandeep79.springseleniumdemo.page.google.GooglePage;
 import com.ssandeep79.springseleniumdemo.util.ScreenshotUtil;
 
 public class Google1Test extends SpringBaseTestNGTest {
 
-    @Lazy
-    @Autowired
+    @LazyAutowired
     private GooglePage googlePage;
-    @Lazy
-    @Autowired
+    @LazyAutowired
     private ScreenshotUtil screenshotUtil;
 
     @Test
@@ -36,5 +33,4 @@ public class Google1Test extends SpringBaseTestNGTest {
             e.printStackTrace();
         }
     }
-
 }

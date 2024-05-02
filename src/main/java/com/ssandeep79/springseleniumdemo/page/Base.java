@@ -3,18 +3,16 @@ package com.ssandeep79.springseleniumdemo.page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
+
+import com.ssandeep79.springseleniumdemo.annotation.LazyAutowired;
 
 import jakarta.annotation.PostConstruct;
 
 public abstract class Base {
-    @Autowired
-    @Lazy
+    @LazyAutowired
     protected WebDriver driver;
 
-    @Lazy
-    @Autowired
+    @LazyAutowired
     protected WebDriverWait wait;
 
     @PostConstruct
