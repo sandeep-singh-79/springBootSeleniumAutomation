@@ -2,30 +2,28 @@ package com.ssandeep79.springseleniumdemo.page.google;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Component;
 
+import com.ssandeep79.springseleniumdemo.annotation.LazyAutowired;
+import com.ssandeep79.springseleniumdemo.annotation.Page;
 import com.ssandeep79.springseleniumdemo.page.Base;
 
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-@Lazy
+@Page
 @Slf4j
-@Component
 public class GooglePage extends Base {
     Logger logger = LoggerFactory.getLogger(GooglePage.class);
 
     @Value("${application.url}")
     private String url;
 
-    @Autowired
+    @LazyAutowired
     @Getter
     private SearchComponent searchComponent;
-    @Autowired
+    @LazyAutowired
     @Getter
     private SearchResults searchResults;
 
