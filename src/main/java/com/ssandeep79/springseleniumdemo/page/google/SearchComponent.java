@@ -1,12 +1,13 @@
 package com.ssandeep79.springseleniumdemo.page.google;
 
-import org.springframework.stereotype.Component;
-import org.openqa.selenium.support.FindBy;
-import com.ssandeep79.springseleniumdemo.page.Base;
-
 import java.util.List;
 
-import static org.openqa.selenium.Keys.TAB;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.springframework.stereotype.Component;
+
+import com.ssandeep79.springseleniumdemo.page.Base;
 
 @Component
 public class SearchComponent extends Base {
@@ -14,17 +15,17 @@ public class SearchComponent extends Base {
     @FindBy(name = "q")
     private WebElement searchBox;
     @FindBy(name = "btnK")
-    private WebElement searchBtn;
+    private List<WebElement> searchBtns;
 
     @Override
-    private boolean isAt() {
+    public boolean isAt() {
         return wait.until(d -> searchBox.isDisplayed());
     }
 
     public void search(final String searchTerm) {
         searchBox.sendKeys(searchTerm);
         searchBox.sendKeys(Keys.TAB);
-        searchBtn.stream()
+        searchBtns.stream()
                     .filter(e -> e.isDisplayed() && e.isEnabled())
                     .findFirst()
                     .ifPresent(WebElement::click);

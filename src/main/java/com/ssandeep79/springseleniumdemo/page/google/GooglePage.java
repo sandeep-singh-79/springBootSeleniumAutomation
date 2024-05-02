@@ -3,12 +3,11 @@ package com.ssandeep79.springseleniumdemo.page.google;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import com.ssandeep79.springseleniumdemo.page.Base;
 
 import lombok.Getter;
 
 @Component
-public class GooglePage extends Base {
+public class GooglePage extends com.ssandeep79.springseleniumdemo.page.Base {
     @Value("${application.url}")
     private String url;
 

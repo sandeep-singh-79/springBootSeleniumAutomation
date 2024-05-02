@@ -121,22 +121,22 @@
 							<value>2</value>
 						</property>
 					</properties>
-					<includes>
+					<!-- <includes>
 						<include>com.ssandeep79.springseleniumdemo.CucumberRunner</include>
-					</includes>
+					</includes> -->
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
+				<!-- <configuration>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
-				</configuration>
+				</configuration> -->
 			</plugin>
 		</plugins>
 	</build>

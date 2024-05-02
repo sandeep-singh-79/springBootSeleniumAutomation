@@ -1,9 +1,11 @@
 package com.ssandeep79.springseleniumdemo.googletest;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,7 +13,7 @@ import com.ssandeep79.springseleniumdemo.SpringBaseTestNGTest;
 import com.ssandeep79.springseleniumdemo.page.google.GooglePage;
 import com.ssandeep79.springseleniumdemo.util.ScreenshotUtil;
 
-public class GoogleTest extends SpringBaseTestNGTest {
+public class Google2Test extends SpringBaseTestNGTest {
 
     @Autowired
     private GooglePage googlePage;
@@ -24,10 +26,14 @@ public class GoogleTest extends SpringBaseTestNGTest {
         googlePage.goTo();
         Assert.assertTrue(googlePage.isAt());
 
-        googlePage.getSearchComponent().search("Spring boot");
+        googlePage.getSearchComponent().search("selenium");
         Assert.assertTrue(googlePage.getSearchResults().isAt());
         Assert.assertTrue(googlePage.getSearchResults().getCount() > 2);
-        screenshotUtil.takeScreenshot(String.valueOf(LocalDateTime.now().toEpochSecond()));
+        try {
+            screenshotUtil.takeScreenshot(String.valueOf(LocalDateTime.now().toEpochSecond(ZoneOffset.of(ZoneOffset.SHORT_IDS.get("IST")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

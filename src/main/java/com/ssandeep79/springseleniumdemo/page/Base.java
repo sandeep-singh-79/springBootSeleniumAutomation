@@ -2,24 +2,25 @@ package com.ssandeep79.springseleniumdemo.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.springframework.beans.factory.Lazy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 public abstract class Base {
     @Autowired
     @Lazy
-    private WebDriver driver;
+    protected WebDriver driver;
 
     @Lazy
     @Autowired
-    private WebDriverWait wait;
+    protected WebDriverWait wait;
 
     @PostConstruct
     private void init() {
         PageFactory.initElements(driver, this);
     }
 
-    public abstract isAt();
+    public abstract boolean isAt();
 }
