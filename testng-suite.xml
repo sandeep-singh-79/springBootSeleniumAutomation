@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="spring-boot" parallel="none" thread-count="2">
+<suite name="spring-boot" parallel="tests" thread-count="2">
     <test name="test-1">
         <classes>
             <class name="com.ssandeep79.springseleniumdemo.googletest.Google1Test" />

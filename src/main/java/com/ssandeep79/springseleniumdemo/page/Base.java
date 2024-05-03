@@ -1,12 +1,11 @@
 package com.ssandeep79.springseleniumdemo.page;
 
+import com.ssandeep79.springseleniumdemo.annotation.LazyAutowired;
+import jakarta.annotation.PostConstruct;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.ssandeep79.springseleniumdemo.annotation.LazyAutowired;
-
-import jakarta.annotation.PostConstruct;
 
 public abstract class Base {
     @LazyAutowired

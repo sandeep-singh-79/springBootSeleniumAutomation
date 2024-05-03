@@ -1,36 +1,41 @@
 package com.ssandeep79.springseleniumdemo.config;
 
 
-import java.net.URL;
-
+import com.ssandeep79.springseleniumdemo.annotation.LazyConfiguration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.AbstractDriverOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
-import com.ssandeep79.springseleniumdemo.annotation.LazyConfiguration;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 @LazyConfiguration
 @Profile({"remote"})
 public class RemoteWebDriverConfig {
-    @Value("${selenium.grid.url}")
+
+    @Value("${application.url}")
     private URL url;
 
     @Bean
     @ConditionalOnProperty(name = "browser", havingValue = "firefox")
-    public WebDriver remoteFirefoxDriver() {
-        return new RemoteWebDriver(url, new FirefoxOptions());
+    public WebDriver remoteFirefoxDriver () throws MalformedURLException {
+        return getRemoteWebDriver(new FirefoxOptions());
     }
 
     @Bean
-    @ConditionalOnMissingBean
+    @ConditionalOnProperty(name = "browser", havingValue = "chrome", matchIfMissing = true)
     // This method should be right at the end of the class as it is a default bean
-    public WebDriver remoteChromeDriver() {
-        return new RemoteWebDriver(url, new ChromeOptions());
+    public WebDriver remoteChromeDriver () throws MalformedURLException {
+        return getRemoteWebDriver(new ChromeOptions());
+    }
+
+    private RemoteWebDriver getRemoteWebDriver (AbstractDriverOptions<?> options) throws MalformedURLException {
+        return new RemoteWebDriver(url, options);
     }
 }

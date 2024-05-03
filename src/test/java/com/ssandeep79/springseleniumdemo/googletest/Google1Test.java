@@ -1,16 +1,15 @@
 package com.ssandeep79.springseleniumdemo.googletest;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import com.ssandeep79.springseleniumdemo.SpringBaseTestNGTest;
 import com.ssandeep79.springseleniumdemo.annotation.LazyAutowired;
 import com.ssandeep79.springseleniumdemo.page.google.GooglePage;
 import com.ssandeep79.springseleniumdemo.util.ScreenshotUtil;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 public class Google1Test extends SpringBaseTestNGTest {
 
@@ -28,7 +27,7 @@ public class Google1Test extends SpringBaseTestNGTest {
         Assert.assertTrue(googlePage.getSearchResults().isAt());
         Assert.assertTrue(googlePage.getSearchResults().getCount() > 2);
         try {
-            screenshotUtil.takeScreenshot(String.valueOf(LocalDateTime.now().toEpochSecond(ZoneOffset.of(ZoneOffset.SHORT_IDS.get("IST")))));
+            screenshotUtil.takeScreenshot(String.valueOf(LocalDateTime.now().toEpochSecond(ZoneOffset.of("+05:30"))) + ".png");
         } catch (IOException e) {
             e.printStackTrace();
         }

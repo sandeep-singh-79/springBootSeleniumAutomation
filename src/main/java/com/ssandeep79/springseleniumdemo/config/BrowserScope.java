@@ -1,11 +1,11 @@
 package com.ssandeep79.springseleniumdemo.config;
 
-import java.util.Objects;
-
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.cloud.context.scope.thread.ThreadScope;
+
+import java.util.Objects;
 
 public class BrowserScope extends ThreadScope {
 
