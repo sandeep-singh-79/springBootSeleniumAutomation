@@ -27,9 +27,10 @@ public class Google1Test extends SpringBaseTestNGTest {
         Assert.assertTrue(googlePage.getSearchResults().isAt());
         Assert.assertTrue(googlePage.getSearchResults().getCount() > 2);
         try {
-            screenshotUtil.takeScreenshot(String.valueOf(LocalDateTime.now().toEpochSecond(ZoneOffset.of("+05:30"))) + ".png");
+            screenshotUtil.takeScreenshot();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        googlePage.close();
     }
 }
