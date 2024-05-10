@@ -15,7 +15,8 @@ import org.springframework.context.annotation.Scope;
 public class WebDriverConfig {
 
     @Bean
-    @Scope("browserscope")
+    @Scope("browserScope")
+    // comment the conditional on property annotation to run the test MultiBrowserTest
     @ConditionalOnProperty(name = "browser", havingValue = "firefox")
     public WebDriver firefoxDriver() {
         WebDriverManager.firefoxdriver().setup();
@@ -24,6 +25,7 @@ public class WebDriverConfig {
 
     @Bean
     @Scope("browserScope")
+    // comment the conditional on property annotation to run the test MultiBrowserTest
     @ConditionalOnProperty(name = "browser", havingValue = "chrome", matchIfMissing = true)
     public WebDriver chromeDriver() {
         WebDriverManager.chromedriver().setup();
