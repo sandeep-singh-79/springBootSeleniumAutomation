@@ -8,8 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 
 public class Google2Test extends SpringBaseTestNGTest {
 
