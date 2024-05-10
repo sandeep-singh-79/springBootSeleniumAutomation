@@ -1,6 +1,6 @@
-package com.ssandeep79.springseleniumdemo.config;
+package com.ssandeep79.springseleniumdemo.demo.config;
 
-import com.ssandeep79.springseleniumdemo.annotation.LazyConfiguration;
+import com.ssandeep79.springseleniumdemo.demo.annotation.LazyConfiguration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Value;

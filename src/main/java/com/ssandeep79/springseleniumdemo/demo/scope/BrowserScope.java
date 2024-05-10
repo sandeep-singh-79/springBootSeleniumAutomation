@@ -1,4 +1,4 @@
-package com.ssandeep79.springseleniumdemo.config;
+package com.ssandeep79.springseleniumdemo.demo.scope;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;

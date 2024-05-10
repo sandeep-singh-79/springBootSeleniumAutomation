@@ -1,9 +1,9 @@
 package com.ssandeep79.springseleniumdemo.googletest;
 
 import com.ssandeep79.springseleniumdemo.SpringBaseTestNGTest;
-import com.ssandeep79.springseleniumdemo.annotation.LazyAutowired;
+import com.ssandeep79.springseleniumdemo.demo.annotation.LazyAutowired;
+import com.ssandeep79.springseleniumdemo.demo.service.ScreenshotService;
 import com.ssandeep79.springseleniumdemo.page.google.GooglePage;
-import com.ssandeep79.springseleniumdemo.util.ScreenshotUtil;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,7 +14,7 @@ public class Google1Test extends SpringBaseTestNGTest {
     @LazyAutowired
     private GooglePage googlePage;
     @LazyAutowired
-    private ScreenshotUtil screenshotUtil;
+    private ScreenshotService screenshotService;
 
     @Test
     public void googleTest() {
@@ -25,7 +25,7 @@ public class Google1Test extends SpringBaseTestNGTest {
         Assert.assertTrue(googlePage.getSearchResults().isAt());
         Assert.assertTrue(googlePage.getSearchResults().getCount() > 2);
         try {
-            screenshotUtil.takeScreenshot();
+            screenshotService.takeScreenshot();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,4 +1,4 @@
-package com.ssandeep79.springseleniumdemo.config;
+package com.ssandeep79.springseleniumdemo.demo.scope;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;

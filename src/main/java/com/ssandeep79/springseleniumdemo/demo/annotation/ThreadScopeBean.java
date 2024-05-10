@@ -1,4 +1,4 @@
-package com.ssandeep79.springseleniumdemo.annotation;
+package com.ssandeep79.springseleniumdemo.demo.annotation;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;

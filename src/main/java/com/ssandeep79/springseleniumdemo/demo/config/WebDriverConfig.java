@@ -1,7 +1,7 @@
-package com.ssandeep79.springseleniumdemo.config;
+package com.ssandeep79.springseleniumdemo.demo.config;
 
-import com.ssandeep79.springseleniumdemo.annotation.LazyConfiguration;
-import com.ssandeep79.springseleniumdemo.annotation.ThreadScopeBean;
+import com.ssandeep79.springseleniumdemo.demo.annotation.LazyConfiguration;
+import com.ssandeep79.springseleniumdemo.demo.annotation.ThreadScopeBean;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

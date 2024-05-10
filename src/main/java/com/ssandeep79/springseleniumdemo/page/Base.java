@@ -1,6 +1,6 @@
 package com.ssandeep79.springseleniumdemo.page;
 
-import com.ssandeep79.springseleniumdemo.annotation.LazyAutowired;
+import com.ssandeep79.springseleniumdemo.demo.annotation.LazyAutowired;
 import jakarta.annotation.PostConstruct;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

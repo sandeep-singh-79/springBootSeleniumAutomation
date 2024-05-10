@@ -1,7 +1,7 @@
 package com.ssandeep79.springseleniumdemo.page.google;
 
-import com.ssandeep79.springseleniumdemo.annotation.LazyAutowired;
-import com.ssandeep79.springseleniumdemo.annotation.Page;
+import com.ssandeep79.springseleniumdemo.demo.annotation.LazyAutowired;
+import com.ssandeep79.springseleniumdemo.demo.annotation.Page;
 import com.ssandeep79.springseleniumdemo.page.Base;
 import org.springframework.beans.factory.annotation.Value;
 

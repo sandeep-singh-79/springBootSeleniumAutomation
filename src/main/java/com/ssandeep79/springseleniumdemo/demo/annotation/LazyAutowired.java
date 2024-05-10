@@ -1,4 +1,4 @@
-package com.ssandeep79.springseleniumdemo.annotation;
+package com.ssandeep79.springseleniumdemo.demo.annotation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;

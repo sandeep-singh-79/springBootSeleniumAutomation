@@ -1,6 +1,6 @@
 package com.ssandeep79.springseleniumdemo.page.google;
 
-import com.ssandeep79.springseleniumdemo.annotation.PageFragment;
+import com.ssandeep79.springseleniumdemo.demo.annotation.PageFragment;
 import com.ssandeep79.springseleniumdemo.page.Base;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;

@@ -1,8 +1,8 @@
-package com.ssandeep79.springseleniumdemo.config;
+package com.ssandeep79.springseleniumdemo.demo.config;
 
 
-import com.ssandeep79.springseleniumdemo.annotation.LazyConfiguration;
-import com.ssandeep79.springseleniumdemo.annotation.ThreadScopeBean;
+import com.ssandeep79.springseleniumdemo.demo.annotation.LazyConfiguration;
+import com.ssandeep79.springseleniumdemo.demo.annotation.ThreadScopeBean;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -10,7 +10,6 @@ import org.openqa.selenium.remote.AbstractDriverOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
 import java.net.MalformedURLException;

@@ -1,7 +1,7 @@
-package com.ssandeep79.springseleniumdemo.config;
+package com.ssandeep79.springseleniumdemo.demo.config;
 
 import com.github.javafaker.Faker;
-import com.ssandeep79.springseleniumdemo.annotation.LazyConfiguration;
+import com.ssandeep79.springseleniumdemo.demo.annotation.LazyConfiguration;
 import org.springframework.context.annotation.Bean;
 
 @LazyConfiguration
