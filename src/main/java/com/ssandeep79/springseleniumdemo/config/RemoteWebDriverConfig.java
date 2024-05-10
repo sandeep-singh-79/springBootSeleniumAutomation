@@ -2,6 +2,7 @@ package com.ssandeep79.springseleniumdemo.config;
 
 
 import com.ssandeep79.springseleniumdemo.annotation.LazyConfiguration;
+import com.ssandeep79.springseleniumdemo.annotation.ThreadScopeBean;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -22,13 +23,13 @@ public class RemoteWebDriverConfig {
     @Value("${application.url}")
     private URL url;
 
-    @Bean
+    @ThreadScopeBean
     @ConditionalOnProperty(name = "browser", havingValue = "firefox")
     public WebDriver remoteFirefoxDriver () throws MalformedURLException {
         return getRemoteWebDriver(new FirefoxOptions());
     }
 
-    @Bean
+    @ThreadScopeBean
     @ConditionalOnProperty(name = "browser", havingValue = "chrome", matchIfMissing = true)
     // This method should be right at the end of the class as it is a default bean
     public WebDriver remoteChromeDriver () throws MalformedURLException {
