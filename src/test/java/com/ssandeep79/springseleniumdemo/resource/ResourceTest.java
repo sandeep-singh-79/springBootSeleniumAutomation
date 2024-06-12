@@ -2,12 +2,14 @@ package com.ssandeep79.springseleniumdemo.resource;
 
 import com.ssandeep79.springseleniumdemo.SpringBaseTestNGTest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.FileCopyUtils;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,11 +23,19 @@ public class ResourceTest extends SpringBaseTestNGTest {
     private Resource fileResource;
     @Value("https://www.google.com")
     private Resource urlResource;
-    @Value("https://www.w3.org/TR/PNG/iso_8859-1.txt")
+    @Value("https://www.w3.org/TR/2003/REC-PNG-20031110/iso_8859-1.txt")
     private Resource downloadResource;
-
+    @Value("classpath:data/testdata2.csv")
+    private Resource dynamicDownloadResource;
+    @Value("${screenshot.path}")
+    private Path path;
     @Value("${screenshot.path}/some.txt")
     private Path downloadPath;
+
+
+
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     @Test
     public void testResource() throws IOException {
@@ -42,10 +52,26 @@ public class ResourceTest extends SpringBaseTestNGTest {
         System.out.println(Arrays.toString(urlResource.getInputStream().readAllBytes()));
     }
 
-    @Test (expectedExceptions = FileNotFoundException.class)
+    @Test
     public void testDownloadResource() throws IOException {
         log.info("------------------ {} -----------------", downloadResource.getURL());
         log.info(downloadResource.getFilename());
         FileCopyUtils.copy(downloadResource.getInputStream(), Files.newOutputStream(downloadPath));
+    }
+
+    @DataProvider
+    public Object[] getDynamicDownloadResource() throws IOException {
+        return  Files.readAllLines(dynamicDownloadResource.getFile().toPath())
+                    .stream()
+                    .map(s -> s.split(","))
+                    .toArray(Object[][]::new);
+    }
+
+    @Test (dataProvider = "getDynamicDownloadResource")
+    public void testDynamicDownloadResource(String urlToDownload, String outFile) throws IOException {
+        log.info("------------------ {} -----------------", urlToDownload);
+        log.info(outFile);
+        FileCopyUtils.copy(resourceLoader.getResource(urlToDownload).getInputStream(),
+            Files.newOutputStream(path.resolve(outFile)));
     }
 }
