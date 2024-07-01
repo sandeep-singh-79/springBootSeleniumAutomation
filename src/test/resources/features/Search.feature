@@ -9,4 +9,4 @@ Feature: Google Search
       | keyword  | count |
       | Spring   | 2     |
       | Java     | 5     |
-      | Selenium | 7     |
+      | Selenium | 207     |

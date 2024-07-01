@@ -49,4 +49,8 @@ public class ScreenshotService {
         takeScreenshot(fileName);
     }
 
+    public byte[] getScreenshot() {
+        return ctx.getBean(TakesScreenshot.class).getScreenshotAs(OutputType.BYTES);
+    }
+
 }
