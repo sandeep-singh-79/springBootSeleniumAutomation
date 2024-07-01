@@ -1,11 +1,9 @@
 package com.ssandeep79.springseleniumdemo.visa;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
-import java.time.LocalDate;
-import java.util.List;
-
+import com.ssandeep79.springseleniumdemo.SpringBaseTestNGTest;
+import com.ssandeep79.springseleniumdemo.entity.Customer;
+import com.ssandeep79.springseleniumdemo.page.visa.VisaRegistrationPage;
+import com.ssandeep79.springseleniumdemo.repository.CustomerRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,12 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.ssandeep79.springseleniumdemo.SpringBaseTestNGTest;
-import com.ssandeep79.springseleniumdemo.entity.Customer;
-import com.ssandeep79.springseleniumdemo.page.visa.VisaRegistrationPage;
-import com.ssandeep79.springseleniumdemo.repository.CustomerRepository;
+import java.time.LocalDate;
+import java.util.List;
 
-import lombok.extern.slf4j.Slf4j;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class UserVisaTest extends SpringBaseTestNGTest {
     private static final Logger log = LoggerFactory.getLogger(UserVisaTest.class);
@@ -41,7 +38,7 @@ public class UserVisaTest extends SpringBaseTestNGTest {
         assertEquals(customerRepository.findById(85).get().getFirstName(), "Andrea");
     }
 
-    @Test (dataProvider = "getCustomerData")
+    @Test(dataProvider = "getCustomerData")
     public void testVisaPage (List<Customer> customers) {
         customers.forEach(customer -> {
             log.info("Processing customer #{}: {} {}", customer.getId(), customer.getFirstName(), customer.getLastName());
@@ -63,7 +60,7 @@ public class UserVisaTest extends SpringBaseTestNGTest {
 
     @DataProvider
     public Object[] getCustomerData () {
-        return new Object[] {
+        return new Object[]{
             customerRepository.findAll().stream().limit(1).toList(),
             customerRepository.findByFirstNameStartingWith("Mi").stream().limit(1).toList(),
             customerRepository.findByDobBetween(LocalDate.of(1990, 1, 1), LocalDate.of(1995, 1, 1)).stream().limit(1).toList()
