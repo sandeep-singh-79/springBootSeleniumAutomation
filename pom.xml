@@ -21,6 +21,7 @@
         <cucumber.version>7.18.0</cucumber.version>
         <faker.verison>1.0.2</faker.verison>
         <maven.surefire.plugin>3.2.5</maven.surefire.plugin>
+        <extent.cucumber.version>1.14.0</extent.cucumber.version>
     </properties>
     <dependencies>
         <dependency>
@@ -154,11 +155,11 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!-- <dependency>
-            <groupId>com.aventstack</groupId>
-            <artifactId>extentreports-cucumber4-adapter</artifactId>
-            <version>${version}</version>
-        </dependency> -->
+         <dependency>
+            <groupId>tech.grasshopper</groupId>
+            <artifactId>extentreports-cucumber7-adapter</artifactId>
+            <version>${extent.cucumber.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>

@@ -7,8 +7,12 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
     features = "src/test/resources/features",
     tags = "@google",
-    glue = "com.ssandeep79.springseleniumdemo.bdd"/*,
-        plugin = {"pretty", "html:target/cucumber-reports", "json:target/cucumber-reports/cucumber.json"}*/
+    glue = "com.ssandeep79.springseleniumdemo.bdd",
+    plugin = {
+        "pretty",
+        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+        "summary"},
+    monochrome = true
 )
 public class CucumberRunner extends AbstractTestNGCucumberTests {
     @Override
