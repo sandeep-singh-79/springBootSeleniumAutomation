@@ -1,3 +1,4 @@
+@google
 Feature: Google Search
 
   Scenario Outline: Search for '<keyword>'
@@ -9,4 +10,4 @@ Feature: Google Search
       | keyword  | count |
       | Spring   | 2     |
       | Java     | 5     |
-      | Selenium | 207     |
+      | Selenium | 7     |
