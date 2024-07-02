@@ -33,7 +33,7 @@ public class CucumberHooks {
         var webDriver = ctx.getBean(WebDriver.class);
         if (webDriver != null) {
             log.info("Closing the browser");
-            webDriver.quit();
+            webDriver.manage().deleteAllCookies();
         }
     }
 }

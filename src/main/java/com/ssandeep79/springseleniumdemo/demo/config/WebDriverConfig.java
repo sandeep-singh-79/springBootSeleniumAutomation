@@ -19,7 +19,9 @@ public class WebDriverConfig {
     @ConditionalOnProperty(name = "browser", havingValue = "firefox")
     public WebDriver firefoxDriver() {
         WebDriverManager.firefoxdriver().setup();
-        return new FirefoxDriver();
+       var firefoxDriver = new FirefoxDriver();
+       Runtime.getRuntime().addShutdownHook(new Thread(firefoxDriver::quit));
+       return firefoxDriver;
     }
 
     @ThreadScopeBean
@@ -32,6 +34,7 @@ public class WebDriverConfig {
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         options.setExperimentalOption("useAutomationExtension", false);
         var chromeDriver = new ChromeDriver(options);
+        Runtime.getRuntime().addShutdownHook(new Thread(chromeDriver::quit));
         chromeDriver.executeScript("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})");
         return chromeDriver;
     }
