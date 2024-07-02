@@ -23,7 +23,7 @@ public class CucumberHooks {
     @AfterStep
     public void afterStep (Scenario scenario) {
         if (scenario.isFailed()) {
-            scenario.embed(screenshotService.getScreenshot(), "image/png", scenario.getName() + LocalDate.now());
+            scenario.attach(screenshotService.getScreenshot(), "image/png", scenario.getName() + LocalDate.now());
         }
     }
 

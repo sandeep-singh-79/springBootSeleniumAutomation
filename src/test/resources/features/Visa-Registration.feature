@@ -1,4 +1,4 @@
-@smoke
+@visa
 Feature: Visa Registration
 
   Scenario Outline: Submit visa registration form
