@@ -5,9 +5,10 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-    features = "src/test/resources/features",
-    tags = "@google",
-    glue = "com.ssandeep79.springseleniumdemo.bdd",
+    features = "classpath:features",
+    tags = "@visa or @google",
+    glue = {"classpath:com.ssandeep79.springseleniumdemo.bdd",
+        "classpath:com.ssandeep79.springseleniumdemo.bdd.stepdefinitions"},
     plugin = {
         "pretty",
         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
