@@ -6,13 +6,13 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
     features = "classpath:features",
-    tags = "@visa or @google",
-    glue = {"classpath:com.ssandeep79.springseleniumdemo.bdd",
-        "classpath:com.ssandeep79.springseleniumdemo.bdd.stepdefinitions"},
+    tags = "@visa",
+    glue = {"com.ssandeep79.springseleniumdemo.bdd"},
     plugin = {
         "pretty",
-        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-        "summary"},
+        "summary",
+        "html:target/cucumber.html",
+        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
     monochrome = true
 )
 public class CucumberRunner extends AbstractTestNGCucumberTests {
