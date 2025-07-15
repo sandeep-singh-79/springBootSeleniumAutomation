@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  # Selenium Hub
+  selenium-hub:
+    image: selenium/hub:latest
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+    environment:
+      - GRID_MAX_SESSION=5
+      - GRID_BROWSER_TIMEOUT=300
+      - GRID_TIMEOUT=300
+
+  # Chrome Node
+  chrome:
+    image: selenium/node-chrome:latest
+    container_name: selenium-chrome
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=5
+      - SE_NODE_SESSION_TIMEOUT=300
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "5900:5900"  # VNC port
+    
+  # Firefox Node
+  firefox:
+    image: selenium/node-firefox:latest
+    container_name: selenium-firefox
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=5
+      - SE_NODE_SESSION_TIMEOUT=300
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "5901:5900"  # VNC port
+    
+  # Test application container
+  test-runner:
+    image: maven:3.9.6-eclipse-temurin-17
+    container_name: test-runner
+    depends_on:
+      - selenium-hub
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: >
+      bash -c "mvn clean test -Dspring.profiles.active=remote"
+    environment:
+      - MAVEN_OPTS=-Xmx2048m
+      - TZ=UTC
