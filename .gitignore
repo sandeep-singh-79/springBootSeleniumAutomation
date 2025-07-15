@@ -35,3 +35,4 @@ reports*
 *.log
 *.log*
 allure-results/
+**/src/main/screenshots/
