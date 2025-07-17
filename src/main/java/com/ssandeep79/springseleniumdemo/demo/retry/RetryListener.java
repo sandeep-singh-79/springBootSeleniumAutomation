@@ -15,8 +15,9 @@ import java.lang.reflect.Method;
 public class RetryListener implements IAnnotationTransformer {
     private static final Logger logger = LoggerFactory.getLogger(RetryListener.class);
 
+    @SuppressWarnings("rawtypes")
     @Override
-    public void transform(ITestAnnotation annotation, Class<?> testClass, Constructor<?> testConstructor, Method testMethod) {
+    public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
         // Check if method has @RetryTest annotation
         if (testMethod != null && testMethod.isAnnotationPresent(RetryTest.class)) {
             // Apply retry analyzer only to methods with @RetryTest annotation

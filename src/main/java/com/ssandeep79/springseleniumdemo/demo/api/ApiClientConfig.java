@@ -5,8 +5,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.config.ConnectionConfig;
+import io.restassured.config.HttpClientConfig;
+import io.restassured.config.RestAssuredConfig;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
@@ -31,15 +35,36 @@ public class ApiClientConfig {
     @Value("${api.log.response:true}")
     private boolean logResponse;
     
+    @Value("${api.connection.timeout:10000}")
+    private int connectionTimeout;
+    
+    @Value("${api.read.timeout:30000}")
+    private int readTimeout;
+    
+    @Value("${api.retry.max:1}")
+    private int maxRetry;
+    
+    @Value("${api.retry.delay:1000}")
+    private int retryDelay;
+    
     /**
      * Creates a basic request specification
      * @return configured request specification
      */
     public RequestSpecification getBasicRequestSpec() {
+        // Configure timeouts
+        RestAssuredConfig config = RestAssured.config()
+            .connectionConfig(ConnectionConfig.connectionConfig()
+                .closeIdleConnectionsAfterEachResponse())
+            .httpClient(HttpClientConfig.httpClientConfig()
+                .setParam("http.connection.timeout", connectionTimeout)
+                .setParam("http.socket.timeout", readTimeout));
+        
         RequestSpecBuilder builder = new RequestSpecBuilder()
                 .setBaseUri(baseUrl)
                 .setContentType(ContentType.JSON)
-                .setAccept(ContentType.JSON);
+                .setAccept(ContentType.JSON)
+                .setConfig(config);
                 
         if (logRequest) {
             builder.log(LogDetail.ALL);
@@ -72,7 +97,10 @@ public class ApiClientConfig {
      */
     public ResponseSpecification getSuccessResponseSpec() {
         ResponseSpecBuilder builder = new ResponseSpecBuilder()
-                .expectStatusCode(status -> status >= 200 && status < 300);
+                .expectStatusCode(org.hamcrest.Matchers.allOf(
+                    org.hamcrest.Matchers.greaterThanOrEqualTo(200),
+                    org.hamcrest.Matchers.lessThan(300)
+                ));
                 
         if (logResponse) {
             builder.log(LogDetail.ALL);
@@ -127,5 +155,66 @@ public class ApiClientConfig {
      */
     public void setAuthToken(String authToken) {
         this.authToken = authToken;
+    }
+    
+    /**
+     * Gets the connection timeout in milliseconds
+     * @return connection timeout
+     */
+    public int getConnectionTimeout() {
+        return connectionTimeout;
+    }
+    
+    /**
+     * Gets the read timeout in milliseconds
+     * @return read timeout
+     */
+    public int getReadTimeout() {
+        return readTimeout;
+    }
+    
+    /**
+     * Gets the maximum number of retry attempts
+     * @return maximum retry count
+     */
+    public int getMaxRetry() {
+        return maxRetry;
+    }
+    
+    /**
+     * Gets the delay between retry attempts in milliseconds
+     * @return retry delay
+     */
+    public int getRetryDelay() {
+        return retryDelay;
+    }
+    
+    /**
+     * Creates a retry configuration object for use in tests
+     * @return retry configuration
+     */
+    public RetryConfig getRetryConfig() {
+        return new RetryConfig(maxRetry, retryDelay);
+    }
+    
+    /**
+     * Configuration class for API request retries
+     */
+    public static class RetryConfig {
+        private final int maxRetries;
+        private final int delayMs;
+        
+        public RetryConfig(int maxRetries, int delayMs) {
+            this.maxRetries = maxRetries;
+            this.delayMs = delayMs;
+        }
+        
+        public int getMaxRetries() {
+            return maxRetries;
+        }
+        
+        public int getDelayMs() {
+            return delayMs;
+        }
     }
 }
